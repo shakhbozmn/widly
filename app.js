@@ -1,15 +1,27 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const eventsRouter = require('./routes/events');
+const express = require('express')
+const path = require('path')
+const dbPath = path.join(__dirname, '/data/widly_db_16395.json');
+global.widly_db = dbPath
+
+const webRoute = require('./routes/web');
+const apiRoute = require('./routes/api');
 
 const app = express();
-const port = 3000;
 
-app.use(bodyParser.json());
+app.set('view engine', 'pug');
 
-// Event routes
-app.use('/api/events', eventsRouter);
+app.use('/css', express.static('public/css'))
+app.use('/js', express.static('public/js'))
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/api', apiRoute);
+app.use('/', webRoute);
+
+app.use((req, res) => {
+    res.redirect('/');
 });
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server running on http://localhost:${port}`));

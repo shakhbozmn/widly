@@ -1,0 +1,12 @@
+body {
+  background-color: #f0f0f0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.input-group-text {
+  background-color: #eeeeee;
+  border: 1px solid #ccc;
+}
+.input-group-text .fas.fa-calendar-alt {
+  color: #333333;
+}/*# sourceMappingURL=styles.css.map */
