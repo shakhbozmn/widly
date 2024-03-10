@@ -1,17 +1,15 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const eventsRouter = require('./routes/events');
+
 const app = express();
 const port = 3000;
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(bodyParser.json());
 
-// Routes
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users/index'));
+// Event routes
+app.use('/api/events', eventsRouter);
 
-// Listen on port 3000
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Server running at http://localhost:${port}`);
 });
