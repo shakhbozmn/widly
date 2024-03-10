@@ -5,7 +5,6 @@ const { addEventValidation, updateEventValidation, deleteEventValidation } = req
 const router = express.Router();
 const eventController = require('../../../controllers/api');
 
-// Define API routes
 router.get('/', (req, res) => {
   eventController.getAll(req, res);
 });

@@ -8,15 +8,5 @@
             "contactPhone": "+998912123312",
             "seat": "awdadawda123"
         }
-    },
-    {
-        "id": "9572",
-        "event": {
-            "eventName": "Music Fest",
-            "eventDateTime": "13/03/2024 03:35",
-            "venue": "Tashkent, Kioca",
-            "contactPhone": "+998910100101",
-            "seat": "Room-32"
-        }
     }
 ]

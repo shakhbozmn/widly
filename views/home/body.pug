@@ -1,5 +1,27 @@
 include ../index.pug
 body
+    header
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+        .container
+          .wd-nav
+            a.navbar-brand(href="/") Widly
+            button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+              span.navbar-toggler-icon
+            #navbarNav.collapse.navbar-collapse
+              ul.navbar-nav.ml-auto
+                li.nav-item
+                  a.nav-link(href="/home") Home
+                li.nav-item
+                  a.nav-link(href="/about") About Us
+                li.nav-item
+                  a.nav-link(href="/services") Services
+              
+
+    .hero-section
+      .container
+        // ... Your content for the agency section
+
+    // Event list section
     .container.mt-5
       .row.d-flex.align-items-center
         .col-md-6
