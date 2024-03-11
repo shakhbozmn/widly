@@ -1,29 +1,32 @@
 include ../head.pug
 body
-  .container.mt-5
-    h1 #{mode}
-    .mb-3
-      label(for="eventName" class="form-label") Event Name
-      input(type="text" class="form-control" id="eventName" name="eventName" required)
-    .mb-3
-      label(for="eventDateTime" class="form-label") Event Date/Time
-      .input-group.date(id="datetimepicker1" data-target-input="nearest")
-        input(type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="eventDateTime" name="eventDateTime" required)
-        .input-group-append(data-target="#datetimepicker1" data-toggle="datetimepicker")
-          .input-group-text
-            i.fas.fa-calendar-alt
-    .mb-3
-      label(for="venue" class="form-label") Venue
-      input(type="text" class="form-control" id="venue" name="venue" required)
-    .mb-3
-      label(for="contactPhone" class="form-label") Contact Phone
-      input(type="tel" class="form-control" id="contactPhone" name="contactPhone" required)
-    .mb-3
-      label(for="seat" class="form-label") Seat
-      input(type="text" class="form-control" id="seat" name="seat" required)
-    button(type="submit" class="btn btn-success" onclick="submitForm()") #{mode === 'Update' ? 'Update' : 'Add'}
-    span &nbsp;
-    button(type="submit" class="btn btn-primary" onclick="window.location.href='/'") Back to list
+  .wd-event-add-update
+    .wd-event-add-update-content.container.mt-5
+      .wd-header 
+        .back-icon 
+          a(href="/") 
+            i.fas.fa-chevron-left
+        h1.wd-title #{mode}
+      .wd-header-content.wd-input-field
+        label(for="eventName" class="wd-form-label") Event Name
+        input(type="text" class="wd-form-control" id="eventName" name="eventName" placeholder="Add Event Name" required)
+      .wd-main-content.wd-input-field
+        label(for="eventDateTime" class="wd-form-label") Event Date/Time
+        .wd-input-group.date(id="datetimepicker1" data-target-input="nearest")
+          input(type="text" class="wd-form-control wd-datetimepicker-input" data-target="#datetimepicker1" id="eventDateTime" placeholder="Select Date for Event" name="eventDateTime" required)
+            
+      .wd-input-field
+        label(for="venue" class="wd-form-label") Venue
+        input(type="text" class="wd-form-control" id="venue" name="venue" placeholder="Location" required)
+      .wd-input-field
+        label(for="contactPhone" class="wd-form-label") Contact Phone
+        input(type="tel" class="wd-form-control" id="contactPhone" name="contactPhone" placeholder="+998xxxxxxxxx" required)
+      .wd-input-field
+        label(for="seat" class="wd-form-label") Seat
+        input(type="text" class="wd-form-control" id="seat" name="seat" placeholder="How Many People?" required)
+      .wd-button-group
+        button(type="submit" class="wd-btn wd-btn-primary" onclick="window.location.href='/eventList'") Events List 
+        button(type="submit" class="wd-btn wd-btn-success" onclick="submitForm()") #{mode === 'Update Existing Event' ? 'Update' : 'Let It Be!'}
 
   script.
     const format = 'DD/MM/YYYY HH:mm'
@@ -36,7 +39,7 @@ body
         return moment(date).format(format)
     }
 
-    if ("#{mode}" === "Update") {
+    if ("#{mode}" === "Update Existing Event") {
       const eventData = !{JSON.stringify(eventData || {})}.event;
       document.getElementById('eventName').value = eventData.eventName || '';
 
@@ -58,12 +61,12 @@ body
         seat: document.getElementById('seat').value,
       };
 
-      const url = "#{mode}" === "Update" ? `/api/event/${!{JSON.stringify(eventData || {})}.id}` : '/api/event';
-      const method = "#{mode}" === "Update" ? 'put' : 'post';
+      const url = "#{mode}" === "Update Existing Event" ? `/api/event/${!{JSON.stringify(eventData || {})}.id}` : '/api/event';
+      const method = "#{mode}" === "Update Existing Event" ? 'put' : 'post';
 
       axios[method](url, eventData).then(response => {
         alert('Success!');
-        location.href = '/'
+        location.href = '/eventList'
       })
       .catch(error => {
         if(error.response)

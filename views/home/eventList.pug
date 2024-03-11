@@ -1,44 +1,44 @@
 include ../head.pug
 body
-  .events-section  
-      .container.mt-5
-        .row.d-flex.align-items-center
-          .col-md-6
-            h1 List
-          .col-md-6.text-end
-            a.btn.btn-success(href='/add', role='button') Add      
-        table.table.table-responsive.table-hover.table-striped.table-dark
-          thead
-            tr
-              th(scope="col") ID
-              th(scope="col") Event Name
-              th(scope="col") Event DateTime
-              th(scope="col") Venue
-              th(scope="col") Contact Phone
-              th(scope="col") Seat
-              th(scope="col") Actions
-          tbody.text-white
+  .events-list  
+    .container.mt-5
+      .row.mb-5
+        .col-md-12.d-flex.justify-content-between.align-items-center
+          .wd-header 
+            .back-icon 
+              a(href="/") 
+                i.fas.fa-chevron-left
+            h1.wd-title Events List
+          a.btn.btn-success.wd-btn-top(href='/add', role='button') Add New Event
+
+      .row#eventsRow
+
 script.
   document.addEventListener('DOMContentLoaded', function() {
     axios.get('/api/event').then(function(response) {
       const events = response.data;
-      const tableBody = document.querySelector('table tbody');
-      events.forEach(t => {
-        const row = document.createElement('tr');
-        const event = t.event
-        row.innerHTML = `
-          <td>${t.id}</td>
-          <td>${event.eventName}</td>
-          <td>${event.eventDateTime}</td>
-          <td>${event.venue}</td>
-          <td>${event.contactPhone}</td>
-          <td>${event.seat}</td>
-          <td>
-            <button class="btn btn-primary btn-sm" data-id="${t.id}" onclick="window.location.href='/update/${t.id}'">Update</button>
-            <button class="btn btn-danger btn-sm" data-id="${t.id}">Delete</button>
-          </td>
+      const eventsRow = document.querySelector('#eventsRow');
+      events.forEach(e => {
+        const col = document.createElement('div');
+        col.className = 'col-md-4 mb-4';
+        const event = e.event;
+        col.innerHTML = `
+          <div class="card text-white bg-dark h-100">
+            <div class="card-header">Event ID: ${e.id}</div>
+            <div class="card-body">
+              <h5 class="card-title">${event.eventName}</h5>
+              <p class="card-text"><span>Date & Time:</span> ${event.eventDateTime}</p>
+              <p class="card-text"><span>Venue:</span> ${event.venue}</p>
+              <p class="card-text"><span>Contact:</span> ${event.contactPhone}</p>
+              <p class="card-text"><span>Seat:</span> ${event.seat}</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-primary btn-sm" onclick="window.location.href='/update/${e.id}'">Update</button>
+              <button class="btn btn-danger btn-sm" data-id="${e.id}">Delete</button>
+            </div>
+          </div>
         `;
-        tableBody.appendChild(row);
+        eventsRow.appendChild(col);
       });
     })
     .catch(function(error) {
@@ -50,13 +50,12 @@ script.
       if (event.target && event.target.classList.contains('btn-danger')) {
         const eventId = event.target.getAttribute('data-id');
         axios.delete(`/api/event/${eventId}`).then(function(response) {
-          alert('Deleted successfully', response);
-          location.href = '/'
+          alert('Deleted successfully');
+          location.reload();
         })
         .catch(function(error) {
           alert('Error deleting event: ' + error);
         });
       }
     });
-    
   });

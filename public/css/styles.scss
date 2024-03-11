@@ -1,5 +1,10 @@
 @import "typography";
 
+$primary-color: #4caf50;
+$secondary-color: #ffeb3b;
+$main-text-color: #d5f710;
+$font-family: "Roboto", sans-serif;
+
 body {
     background: #000;
 }
@@ -104,6 +109,7 @@ header {
         margin-bottom: 30px;
         border: #f3f3f386 solid 2px;
         padding: 30px;
+        height: 100%;
         background: #000;
     }
 
@@ -426,6 +432,302 @@ header {
             font-weight: 400;
             font-style: normal;
             color: #f3f3f3;
+        }
+    }
+}
+
+.latest-events-section {
+    .wd-btn-top {
+        background-color: transparent;
+        border: $main-text-color solid 2px;
+        color: $main-text-color;
+        transition: all 0.3s ease-in-out;
+        width: 30%;
+        font-size: 20px;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 800;
+        font-style: normal;
+        line-height: normal;
+        &:hover {
+            background-color: $main-text-color;
+            color: black;
+        }
+    }
+    #latestEventsRow {
+        .card {
+            background-color: #000;
+            border: #d5f710 solid 2px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            .card-header {
+                color: $main-text-color;
+                font-size: 65px;
+                align-self: center;
+                border-bottom: #f3f3f3 solid 2px;
+            }
+            .card-body {
+                color: #f3f3f3;
+                .card-title {
+                    font-size: 30px;
+                    margin-bottom: 20px;
+                    font-family: "Montserrat", sans-serif;
+                    font-optical-sizing: auto;
+                    font-weight: 800;
+                    font-style: normal;
+                    line-height: normal;
+                    color: #d5f710;
+                    text-align: center;
+                }
+                .card-text {
+                    font-size: 16px;
+                    font-family: "Montserrat", sans-serif;
+                    font-optical-sizing: auto;
+                    font-weight: 400;
+                    font-style: normal;
+                    color: #f3f3f3ad;
+                    span {
+                        color: #f3f3f3;
+                    }
+                }
+            }
+            .card-footer {
+                align-self: flex-end;
+                border-top: #d5f710 solid 2px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                gap: 10px;
+            }
+        }
+    }
+}
+
+//Add or Update Event
+.wd-event-add-update {
+    &-content {
+        margin-top: 5rem;
+        font-family: $font-family;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .wd-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            .back-icon {
+                i {
+                    font-size: 30px;
+                    color: $secondary-color;
+                    cursor: pointer;
+                    transition: all 0.15s ease-in-out;
+                    &:hover {
+                        color: darken($secondary-color, 40%);
+                    }
+                }
+            }
+        }
+
+        .wd-header .wd-header-content,
+        .wd-main-content,
+        .wd-input-field {
+            margin-bottom: 1rem;
+        }
+
+        .wd-input-field {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .wd-header-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .wd-form-control {
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 2px solid #ced4da;
+            border-radius: 0.25rem;
+        }
+
+        .wd-form-label {
+            color: $secondary-color;
+            font-weight: bold;
+        }
+
+        .wd-form-control {
+            border-radius: 0.25rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: 1px solid darken($primary-color, 15%);
+            &:focus {
+                border-color: $primary-color;
+                box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+            }
+        }
+
+        .wd-input-group {
+            position: relative;
+
+            .wd-datetimepicker-input {
+                &::placeholder {
+                    color: white;
+                }
+            }
+
+            .wd-input-group-text {
+                background-color: $secondary-color;
+                border: none;
+                color: black;
+                i {
+                    margin-right: 0.5rem;
+                }
+            }
+
+            .wd-input-group-append {
+                .wd-input-group-text {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .wd-button-group {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .wd-btn {
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.25rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            &.wd-btn-success {
+                background-color: transparent;
+                border: $main-text-color solid 2px;
+                color: white;
+                transition: all 0.3s ease-in-out;
+                width: 50%;
+                &:hover {
+                    background-color: $main-text-color;
+                    color: black;
+                }
+            }
+            &.wd-btn-primary {
+                background-color: $secondary-color;
+                color: black;
+                border: none;
+                transition: all 0.3s ease-in-out;
+                width: 50%;
+                &:hover {
+                    background-color: darken($secondary-color, 40%);
+                }
+            }
+        }
+    }
+}
+
+//Events List Page
+
+.events-list {
+    .wd-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        .back-icon {
+            i {
+                font-size: 30px;
+                color: $secondary-color;
+                cursor: pointer;
+                transition: all 0.15s ease-in-out;
+                &:hover {
+                    color: darken($secondary-color, 40%);
+                }
+            }
+        }
+    }
+    .wd-btn-top {
+        background-color: transparent;
+        border: $main-text-color solid 2px;
+        color: $main-text-color;
+        transition: all 0.3s ease-in-out;
+        width: 30%;
+        font-size: 20px;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 800;
+        font-style: normal;
+        line-height: normal;
+        &:hover {
+            background-color: $main-text-color;
+            color: black;
+        }
+    }
+    #eventsRow {
+        .card {
+            background-color: #000;
+            border: #d5f710 solid 2px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            .card-header {
+                border-bottom: #d5f710 solid 2px;
+                color: #f3f3f3;
+                font-size: 15px;
+            }
+            .card-body {
+                color: #f3f3f3;
+                .card-title {
+                    font-size: 30px;
+                    margin-bottom: 20px;
+                    font-family: "Montserrat", sans-serif;
+                    font-optical-sizing: auto;
+                    font-weight: 800;
+                    font-style: normal;
+                    line-height: normal;
+                    color: #d5f710;
+                    text-align: center;
+                }
+                .card-text {
+                    font-size: 16px;
+                    font-family: "Montserrat", sans-serif;
+                    font-optical-sizing: auto;
+                    font-weight: 400;
+                    font-style: normal;
+                    color: #f3f3f3ad;
+                    span {
+                        color: #f3f3f3;
+                    }
+                }
+            }
+            .card-footer {
+                align-self: flex-end;
+                border-top: #d5f710 solid 2px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                gap: 10px;
+            }
         }
     }
 }

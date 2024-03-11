@@ -8,9 +8,7 @@ body
             | W
             span i
             | dly
-
-              
-
+            
     .hero-section
       .bg-image
       .container
@@ -147,43 +145,44 @@ body
 
     .wd-divider
 
-    .wd-upcoming-events 
-      .container
-        .wd-title-small Upcoming Events
-        .wd-title Events Services We Offer
-        .wd-subtitle Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum laudantium in laboriosam consequatur, perspiciatis commodi numquam voluptates cumque. Delectus, recusandae?
+    .latest-events-section
+      .container.mt-5
         .row
-          .col-md-4
-            .wd-event
-              .wd-event-img
-                i.fas.fa-calendar-alt
-              .wd-event-content
-                .wd-event-title Event Name
-                .wd-event-desc Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum laudantium in laboriosam consequatur, perspiciatis commodi numquam voluptates cumque. Delectus, recusandae?
-                .wd-event-date 12/12/2021
-                .wd-event-venue Jakarta
-                .wd-event-seat 100
-                .wd-event-contact 08123456789
-          .col-md-4
-            .wd-event
-              .wd-event-img
-                i.fas.fa-calendar-alt
-              .wd-event-content
-                .wd-event-title Event Name
-                .wd-event-desc Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum laudantium in laboriosam consequatur, perspiciatis commodi numquam voluptates cumque. Delectus, recusandae?
-                .wd-event-date 12/12/2021
-                .wd-event-venue Jakarta
-                .wd-event-seat 100
-                .wd-event-contact 08123456789
-          .col-md-4
-            .wd-event
-              .wd-event-img
-                i.fas.fa-calendar-alt
-              .wd-event-content
-                .wd-event-title Event Name
-                .wd-event-desc Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum laudantium in laboriosam consequatur, perspiciatis commodi numquam voluptates cumque. Delectus, recusandae?
-                .wd-event-date 12/12/2021
-                .wd-event-venue Jakarta
-                .wd-event-seat 100
-                .wd-event-contact 08123456789
-    
+          .col-md-12
+            h2.wd-title.mb-5 Latest Events
+
+        .row#latestEventsRow
+
+script.
+   document.addEventListener('DOMContentLoaded', function() {
+    axios.get('/api/event').then(function(response) {
+      console.log (response.data);
+      const events = response.data;
+      const latestEvents = events.slice(-2);
+      const latestEventsRow = document.querySelector('#latestEventsRow');
+      
+      latestEvents.forEach(e => {
+        const col = document.createElement('div');
+        col.className = 'col-md-6 mb-4'; // Adjust column size for two cards
+        const event = e.event;
+        col.innerHTML = `
+          <div class="card text-white bg-dark mb-4">
+            <div class="card-header">
+              <i class="fas fa-calendar-alt wd-feature-icon"></i>
+            </div>
+            <div class="card-body">
+                 <h5 class="card-title">${event.eventName}</h5>
+              <p class="card-text"><span>Date & Time:</span> ${event.eventDateTime}</p>
+              <p class="card-text"><span>Venue:</span> ${event.venue}</p>
+              <p class="card-text"><span>Contact:</span> ${event.contactPhone}</p>
+              <p class="card-text"><span>Seat:</span> ${event.seat}</p>
+            </div>
+          </div>
+        `;
+        latestEventsRow.appendChild(col);
+      });
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+  });

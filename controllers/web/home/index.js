@@ -8,11 +8,11 @@ const homeController = {
         res.render('home/eventList');
     },
     add: async (req, res) => {
-        res.render('home/addUpdateEvent', { mode: 'Add' });
+        res.render('home/addUpdateEvent', { mode: 'Add New Event' });
     },
     update: async (req, res) => {
         const eventData = await eventService.getById(req.params.id);
-        res.render('home/addUpdateEvent', { mode: 'Update', eventData: eventData });
+        res.render('home/addUpdateEvent', { mode: 'Update Existing Event', eventData: eventData });
     }
 };
 

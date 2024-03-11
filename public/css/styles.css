@@ -181,6 +181,7 @@ header .navbar-brand span {
   margin-bottom: 30px;
   border: rgba(243, 243, 243, 0.5254901961) solid 2px;
   padding: 30px;
+  height: 100%;
   background: #000;
 }
 .wd-features .wd-feature-desc {
@@ -477,4 +478,269 @@ header .navbar-brand span {
   font-weight: 400;
   font-style: normal;
   color: #f3f3f3;
+}
+
+.latest-events-section .wd-btn-top {
+  background-color: transparent;
+  border: #d5f710 solid 2px;
+  color: #d5f710;
+  transition: all 0.3s ease-in-out;
+  width: 30%;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  line-height: normal;
+}
+.latest-events-section .wd-btn-top:hover {
+  background-color: #d5f710;
+  color: black;
+}
+.latest-events-section #latestEventsRow .card {
+  background-color: #000;
+  border: #d5f710 solid 2px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.latest-events-section #latestEventsRow .card .card-header {
+  color: #d5f710;
+  font-size: 65px;
+  align-self: center;
+  border-bottom: #f3f3f3 solid 2px;
+}
+.latest-events-section #latestEventsRow .card .card-body {
+  color: #f3f3f3;
+}
+.latest-events-section #latestEventsRow .card .card-body .card-title {
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  line-height: normal;
+  color: #d5f710;
+  text-align: center;
+}
+.latest-events-section #latestEventsRow .card .card-body .card-text {
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(243, 243, 243, 0.6784313725);
+}
+.latest-events-section #latestEventsRow .card .card-body .card-text span {
+  color: #f3f3f3;
+}
+.latest-events-section #latestEventsRow .card .card-footer {
+  align-self: flex-end;
+  border-top: #d5f710 solid 2px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.wd-event-add-update-content {
+  margin-top: 5rem;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.wd-event-add-update-content .wd-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+.wd-event-add-update-content .wd-header .back-icon i {
+  font-size: 30px;
+  color: #ffeb3b;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+.wd-event-add-update-content .wd-header .back-icon i:hover {
+  color: #6e6300;
+}
+.wd-event-add-update-content .wd-header .wd-header-content,
+.wd-event-add-update-content .wd-main-content,
+.wd-event-add-update-content .wd-input-field {
+  margin-bottom: 1rem;
+}
+.wd-event-add-update-content .wd-input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.wd-event-add-update-content .wd-header-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.wd-event-add-update-content .wd-form-control {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 2px solid #ced4da;
+  border-radius: 0.25rem;
+}
+.wd-event-add-update-content .wd-form-label {
+  color: #ffeb3b;
+  font-weight: bold;
+}
+.wd-event-add-update-content .wd-form-control {
+  border-radius: 0.25rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 1px solid #357a38;
+}
+.wd-event-add-update-content .wd-form-control:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+}
+.wd-event-add-update-content .wd-input-group {
+  position: relative;
+}
+.wd-event-add-update-content .wd-input-group .wd-datetimepicker-input::-moz-placeholder {
+  color: white;
+}
+.wd-event-add-update-content .wd-input-group .wd-datetimepicker-input::placeholder {
+  color: white;
+}
+.wd-event-add-update-content .wd-input-group .wd-input-group-text {
+  background-color: #ffeb3b;
+  border: none;
+  color: black;
+}
+.wd-event-add-update-content .wd-input-group .wd-input-group-text i {
+  margin-right: 0.5rem;
+}
+.wd-event-add-update-content .wd-input-group .wd-input-group-append .wd-input-group-text {
+  cursor: pointer;
+}
+.wd-event-add-update-content .wd-button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.wd-event-add-update-content .wd-btn {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+.wd-event-add-update-content .wd-btn.wd-btn-success {
+  background-color: transparent;
+  border: #d5f710 solid 2px;
+  color: white;
+  transition: all 0.3s ease-in-out;
+  width: 50%;
+}
+.wd-event-add-update-content .wd-btn.wd-btn-success:hover {
+  background-color: #d5f710;
+  color: black;
+}
+.wd-event-add-update-content .wd-btn.wd-btn-primary {
+  background-color: #ffeb3b;
+  color: black;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  width: 50%;
+}
+.wd-event-add-update-content .wd-btn.wd-btn-primary:hover {
+  background-color: #6e6300;
+}
+
+.events-list .wd-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+.events-list .wd-header .back-icon i {
+  font-size: 30px;
+  color: #ffeb3b;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+.events-list .wd-header .back-icon i:hover {
+  color: #6e6300;
+}
+.events-list .wd-btn-top {
+  background-color: transparent;
+  border: #d5f710 solid 2px;
+  color: #d5f710;
+  transition: all 0.3s ease-in-out;
+  width: 30%;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  line-height: normal;
+}
+.events-list .wd-btn-top:hover {
+  background-color: #d5f710;
+  color: black;
+}
+.events-list #eventsRow .card {
+  background-color: #000;
+  border: #d5f710 solid 2px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.events-list #eventsRow .card .card-header {
+  border-bottom: #d5f710 solid 2px;
+  color: #f3f3f3;
+  font-size: 15px;
+}
+.events-list #eventsRow .card .card-body {
+  color: #f3f3f3;
+}
+.events-list #eventsRow .card .card-body .card-title {
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  line-height: normal;
+  color: #d5f710;
+  text-align: center;
+}
+.events-list #eventsRow .card .card-body .card-text {
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(243, 243, 243, 0.6784313725);
+}
+.events-list #eventsRow .card .card-body .card-text span {
+  color: #f3f3f3;
+}
+.events-list #eventsRow .card .card-footer {
+  align-self: flex-end;
+  border-top: #d5f710 solid 2px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
 }/*# sourceMappingURL=styles.css.map */
