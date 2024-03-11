@@ -2,7 +2,10 @@ const eventService = require('../../../services/eventService');
 
 const homeController = {
     index: async (req, res) => {
-        res.render('home/body');
+        res.render('home/');
+    },
+    eventList: async (req, res) => {
+        res.render('home/eventList');
     },
     add: async (req, res) => {
         res.render('home/addUpdateEvent', { mode: 'Add' });

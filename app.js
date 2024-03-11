@@ -11,6 +11,7 @@ const app = express();
 app.set('view engine', 'pug');
 
 app.use('/css', express.static('public/css'))
+app.use('/images', express.static('public/images'))
 app.use('/js', express.static('public/js'))
 
 app.use(express.json());

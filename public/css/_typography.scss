@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap");
+
+.wd-title {
+    font-size: 65px;
+    margin-bottom: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    line-height: normal;
+    color: #f3f3f3;
+    &-small {
+        font-size: 22px;
+        color: #d5f710;
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-style: normal;
+    }
+}
+.wd-subtitle {
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: #f3f3f38c;
+}
+
+.wd-features {
+    .wd-feature {
+        &-icon {
+            font-size: 50px;
+            color: #d5f710;
+            margin-bottom: 16px;
+        }
+        &-title {
+            font-size: 30px;
+            margin-bottom: 16px;
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 800;
+            font-style: normal;
+            line-height: normal;
+            color: #f3f3f3;
+        }
+        &-desc {
+            font-size: 16px;
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            color: #f3f3f357;
+        }
+    }
+}
+
+.wd-about-title {
+    font-size: 60px;
+    margin-bottom: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    line-height: normal;
+    color: #f3f3f3;
+}
+
+.wd-about-desc {
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: #f3f3f3ad;
+}
+
+.wd-about-key {
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: #f3f3f3;
+
+    i {
+        color: #d5f710;
+        margin-right: 10px;
+    }
+}
