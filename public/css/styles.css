@@ -110,6 +110,60 @@ input:focus-visible {
   outline: none;
 }
 
+.wd-nav .wd-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+@media screen and (max-width: 768px) {
+  .wd-nav .wd-btn {
+    flex-direction: column;
+    margin-top: 30px;
+  }
+}
+.wd-nav .wd-btn .btn-primary {
+  background: #d5f710;
+  color: #000;
+  border: #d5f710 solid 2px;
+  padding: 6px 14px;
+  font-size: 17px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  line-height: normal;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.wd-nav .wd-btn .btn-primary:hover {
+  cursor: pointer;
+  background: transparent;
+  color: #d5f710;
+}
+.wd-nav .wd-btn .btn-secondary {
+  background: transparent;
+  color: #d5f710;
+  border: #d5f710 solid 2px;
+  padding: 6px 14px;
+  font-size: 17px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  line-height: normal;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.wd-nav .wd-btn .btn-secondary:hover {
+  cursor: pointer;
+  background: #d5f710;
+  color: #000;
+}
+
 .wd-webtech-msg {
   background-color: #000;
   padding: 10px 0;

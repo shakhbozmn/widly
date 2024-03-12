@@ -20,10 +20,10 @@ body
         input(type="text" class="wd-form-control" id="venue" name="venue" placeholder="Location" required)
       .wd-input-field
         label(for="contactPhone" class="wd-form-label") Contact Phone
-        input(type="tel" class="wd-form-control" id="contactPhone" name="contactPhone" placeholder="+998xxxxxxxxx" required)
+        input(type="tel" class="wd-form-control" id="contactPhone" name="contactPhone" placeholder="+998xxxxxxxxx" required value="+998")
       .wd-input-field
         label(for="seat" class="wd-form-label") Seat
-        input(type="text" class="wd-form-control" id="seat" name="seat" placeholder="How Many People?" required)
+        input(type="text" class="wd-form-control" id="seat" name="seat" placeholder="How Many Seats?" required)
       .wd-button-group
         button(type="submit" class="wd-btn wd-btn-primary" onclick="window.location.href='/eventList'") Events List 
         button(type="submit" class="wd-btn wd-btn-success" onclick="submitForm()") #{mode === 'Update Existing Event' ? 'Update' : 'Let It Be!'}

@@ -4,10 +4,13 @@ body
       .fixed-top 
         nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.wd-nav
           .container
-           a.navbar-brand(href="/")
-            | W
-            span i
-            | dly
+            a.navbar-brand(href="/")
+              | W
+              span i
+              | dly
+            .wd-btn
+                a.btn.btn-secondary(href="/eventList", role="button") View Events
+                a.btn.btn-primary(href="/add", role="button") Add Event
         .wd-webtech-msg    
           .container
             .row
@@ -163,33 +166,42 @@ body
         .row#latestEventsRow
 
 script.
-   document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     axios.get('/api/event').then(function(response) {
-      console.log (response.data);
+      console.log(response.data);
       const events = response.data;
       const latestEvents = events.slice(-2);
       const latestEventsRow = document.querySelector('#latestEventsRow');
       
-      latestEvents.forEach(e => {
-        const col = document.createElement('div');
-        col.className = 'col-md-6 mb-4'; // Adjust column size for two cards
-        const event = e.event;
-        col.innerHTML = `
-          <div class="card text-white bg-dark mb-4">
-            <div class="card-header">
-              <i class="fas fa-calendar-alt wd-feature-icon"></i>
+      if (latestEvents.length === 0) {
+        const noEventsMessage = document.createElement('div');
+        noEventsMessage.className = 'col-12';
+        noEventsMessage.innerHTML = `<div class="alert alert-warning d-flex align-items-center" role="alert">No upcoming events at the moment. 
+          <a href="/add" class="btn btn-link">Add an Event</a> 
+        </div>`;
+        latestEventsRow.appendChild(noEventsMessage);
+      } else {
+        latestEvents.forEach(e => {
+          const col = document.createElement('div');
+          col.className = 'col-md-6 mb-4'; // Adjust column size for two cards
+          const event = e.event;
+          col.innerHTML = `
+            <div class="card text-white bg-dark mb-4">
+              <div class="card-header">
+                <i class="fas fa-calendar-alt wd-feature-icon"></i>
+              </div>
+              <div class="card-body">
+                   <h5 class="card-title">${event.eventName}</h5>
+                <p class="card-text"><span>Date & Time:</span> ${event.eventDateTime}</p>
+                <p class="card-text"><span>Venue:</span> ${event.venue}</p>
+                <p class="card-text"><span>Contact:</span> ${event.contactPhone}</p>
+                <p class="card-text"><span>Seat:</span> ${event.seat}</p>
+              </div>
             </div>
-            <div class="card-body">
-                 <h5 class="card-title">${event.eventName}</h5>
-              <p class="card-text"><span>Date & Time:</span> ${event.eventDateTime}</p>
-              <p class="card-text"><span>Venue:</span> ${event.venue}</p>
-              <p class="card-text"><span>Contact:</span> ${event.contactPhone}</p>
-              <p class="card-text"><span>Seat:</span> ${event.seat}</p>
-            </div>
-          </div>
-        `;
-        latestEventsRow.appendChild(col);
-      });
+          `;
+          latestEventsRow.appendChild(col);
+        });
+      }
     })
     .catch(function(error) {
       console.log(error);
