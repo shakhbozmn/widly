@@ -48,29 +48,39 @@ Before running the app locally, ensure you have Node.js and npm (Node Package Ma
 
 ```
 widly/
-├── app.js # Application entry point
-├── package.json # Project configuration and dependencies
-├── .gitignore # Specifies files not to track
-├── public/ # Static assets
-│ ├── images/ # Image files
-│ ├── javascripts/ # JavaScript files
-│ └── styles/ # Stylesheets
-│ └── style.css # Main stylesheet
-├── routes/ # Application routes
-│ ├── index.js # Main routes
-│ └── users/ # User-specific routes
-│ └── index.js
-├── views/ # Pug templates
-│ ├── index.pug # Main page template
-│ └── layout.pug # Base layout template
 ├── controllers/ # Route logic
 │ ├── index.js # Main controller
 │ └── users/ # User controller
 │ └── index.js
+├── data/ # Contains Database file
+| └── widly_db_16395.json #Database file
+├── public/ # Static assets
+│ ├── images/ # Image files
+│ ├── js/ # JavaScript files
+│ └── styles/ # Stylesheets
+│ └── style.scss # Main stylesheet
+│ └── _typography.css # Typography stylesheet
+├── routes/ # Application routes
+│ ├── api/ # Api (server-side) routes
+| └── event/ # Main functions for event routs
+| └── index.js # Contains router for routing
+│ └── web/ # Web (client-side) routes
+| └── home/ # Main functions for routing
+| └── index.js # Contains router for routing
+├── views/ # Pug templates
+│ ├── head.pug # Contains head of the HTML Markup
+│ └── home/ # Contains logic layout for Home and other pages
+│ └── addUpdateEvent.pug # Add or Update event layout and logic
+│ └── eventList.pug # Added Events layout and logic
+│ └── index.pug # Home Page layout and logic
 └── services/ # Business logic
-├── index.js # Main services
-└── users/ # User services
+└── eventService/ # Event services
 └── index.js
+└── validators/ # validations for inputs
+└── index.js
+├── app.js # Application entry point
+├── package.json # Project configuration and dependencies
+├── .gitignore # Specifies files not to track
 ```
 
 ## Links
