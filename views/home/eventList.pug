@@ -13,49 +13,85 @@ body
 
       .row#eventsRow
 
+#notificationModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true")
+  .modal-dialog.modal-dialog-centered(role="document")
+    .modal-content
+      .modal-header
+        h5#notificationModalLabel.modal-title Notification
+        button(type="button" class="close" data-bs-dismiss="modal" aria-label="Close")
+          span(aria-hidden="true") ×
+      .modal-body
+        p#notificationMessage Here is the notification message.
+      .modal-footer
+        button(type="button" class="btn btn-secondary" data-bs-dismiss="modal") Close
+
+
 script.
   document.addEventListener('DOMContentLoaded', function() {
     axios.get('/api/event').then(function(response) {
       const events = response.data;
       const eventsRow = document.querySelector('#eventsRow');
-      events.forEach(e => {
-        const col = document.createElement('div');
-        col.className = 'col-md-4 mb-4';
-        const event = e.event;
-        col.innerHTML = `
-          <div class="card text-white bg-dark h-100">
-            <div class="card-header">Event ID: ${e.id}</div>
-            <div class="card-body">
-              <h5 class="card-title">${event.eventName}</h5>
-              <p class="card-text"><span>Date & Time:</span> ${event.eventDateTime}</p>
-              <p class="card-text"><span>Venue:</span> ${event.venue}</p>
-              <p class="card-text"><span>Contact:</span> ${event.contactPhone}</p>
-              <p class="card-text"><span>Seat:</span> ${event.seat}</p>
+      if (events.length === 0) {
+        const noEventsMessage = document.createElement('div');
+        noEventsMessage.className = 'col-12';
+        noEventsMessage.innerHTML = `
+          <div class="alert alert-warning d-flex align-items-center" role="alert">
+            No upcoming events at the moment.
+          </div>`;
+        eventsRow.appendChild(noEventsMessage);
+      } else {
+        events.forEach(e => {
+          const col = document.createElement('div');
+          col.className = 'col-md-4 mb-4';
+          const event = e.event;
+          col.innerHTML = `
+            <div class="card text-white bg-dark h-100">
+              <div class="card-header">Event ID: ${e.id}</div>
+              <div class="card-body">
+                <h5 class="card-title">${event.eventName}</h5>
+                <p class="card-text"><span>Date & Time:</span> ${event.eventDateTime}</p>
+                <p class="card-text"><span>Venue:</span> ${event.venue}</p>
+                <p class="card-text"><span>Contact:</span> ${event.contactPhone}</p>
+                <p class="card-text"><span>Seat:</span> ${event.seat}</p>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-primary btn-sm" onclick="window.location.href='/update/${e.id}'">Update</button>
+                <button class="btn btn-danger btn-sm" data-id="${e.id}">Delete</button>
+              </div>
             </div>
-            <div class="card-footer">
-              <button class="btn btn-primary btn-sm" onclick="window.location.href='/update/${e.id}'">Update</button>
-              <button class="btn btn-danger btn-sm" data-id="${e.id}">Delete</button>
-            </div>
-          </div>
-        `;
-        eventsRow.appendChild(col);
-      });
+          `;
+          eventsRow.appendChild(col);
+        });
+      }
     })
     .catch(function(error) {
-      console.log(error);
+      showNotification('Error loading events: ' + error, 'Error');
     });
 
-    // Use event delegation for delete buttons
     document.addEventListener('click', function(event) {
       if (event.target && event.target.classList.contains('btn-danger')) {
         const eventId = event.target.getAttribute('data-id');
         axios.delete(`/api/event/${eventId}`).then(function(response) {
-          alert('Deleted successfully');
-          location.reload();
+          showNotification('Deleted successfully', 'Success');
+          setTimeout (() => {
+            window.location.reload();
+          }, 2000);
         })
         .catch(function(error) {
-          alert('Error deleting event: ' + error);
+          showNotification('Error deleting event: ' + error, 'Error');
         });
       }
     });
   });
+
+  function showNotification(message, title) {
+    const notificationModalLabel = document.getElementById('notificationModalLabel');
+    const notificationMessage = document.getElementById('notificationMessage');
+    const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'), {
+      keyboard: false
+    });
+
+    notificationModalLabel.textContent = title;
+    notificationMessage.textContent = message;
+    notificationModal.show();
+  }

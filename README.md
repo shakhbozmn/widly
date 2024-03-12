@@ -75,8 +75,7 @@ widly/
 
 ## Links
 
-- **GitHub Repository:** 
-- **Live Demo:** [https://widly.glitch.me](https://widly.glitch.me)
+- **Live Demo:** [https://widly.shahbozms.uz](https://widly.shahbozms.uz)
 
 ## Author
 

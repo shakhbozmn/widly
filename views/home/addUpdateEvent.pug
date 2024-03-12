@@ -25,34 +25,85 @@ body
         label(for="seat" class="wd-form-label") Seat
         input(type="text" class="wd-form-control" id="seat" name="seat" placeholder="How Many Seats?" required)
       .wd-button-group
-        button(type="submit" class="wd-btn wd-btn-primary" onclick="window.location.href='/eventList'") Events List 
-        button(type="submit" class="wd-btn wd-btn-success" onclick="submitForm()") #{mode === 'Update Existing Event' ? 'Update' : 'Let It Be!'}
+        button(type="submit" class="wd-btn wd-btn-primary" onclick="window.location.href='/eventList'"  ) Events List 
+        button(type="submit" class="wd-btn wd-btn-success" onclick="submitForm()" id="submitButton")
+          span#buttonText #{mode === 'Update Existing Event' ? 'Update' : 'Let It Be!'}
+          .spinner-border.spinner-border-sm(role="status" aria-hidden="true" style="display: none;" id="loadingSpinner")
+
+// Bootstrap Modal for Notifications (Success and Error)
+#notificationModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true" )
+  .modal-dialog.modal-dialog-centered(role="document")
+    .modal-content
+      .modal-header
+        h5#notificationModalLabel.modal-title Notification
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+        p#notificationMessage Here is the notification message.
+      .modal-footer
+        button(type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal") Close
+
+
+
 
   script.
-    const format = 'DD/MM/YYYY HH:mm'
-    const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'),{
-        localization: {
-            'locale': 'fr'
-        }
-    })
+    const format = 'DD/MM/YYYY HH:mm';
+    const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'), {
+      localization: {
+        'locale': 'fr'
+      }
+    });
+
     picker.dates.formatInput = function(date) {
-        return moment(date).format(format)
-    }
+      return moment(date).format(format);
+    };
 
     if ("#{mode}" === "Update Existing Event") {
       const eventData = !{JSON.stringify(eventData || {})}.event;
       document.getElementById('eventName').value = eventData.eventName || '';
-
       picker.dates.setValue(
         new tempusDominus.DateTime(moment(eventData.eventDateTime, format))
       );
-
       document.getElementById('venue').value = eventData.venue || '';
       document.getElementById('contactPhone').value = eventData.contactPhone || '';
       document.getElementById('seat').value = eventData.seat || '';
     }
 
+    function showNotification(message, title = 'Notification') {
+      const notificationModalLabel = document.getElementById('notificationModalLabel');
+      const notificationMessage = document.getElementById('notificationMessage');
+      const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'), {
+        keyboard: false
+      });
+
+      notificationModalLabel.textContent = title;
+      notificationMessage.textContent = message;
+      notificationModal.show();
+    }
+
+    function closeModalInSuccess() {
+      document.getElementById('closeBtn').addEventListener('click', function() {
+        document.getElementById('eventName').value = '';
+        document.getElementById('eventDateTime').value = '';
+        document.getElementById('venue').value = '';
+        document.getElementById('contactPhone').value = '+998';
+        document.getElementById('seat').value = '';
+        bootstrap.Modal.getInstance(document.getElementById('successModal')).hide();
+        setTimeout(() => {
+          document.getElementById('eventName').focus();
+        }, 500);
+      });
+    }
+
     function submitForm() {
+      const submitButton = document.getElementById('submitButton');
+      const buttonText = document.getElementById('buttonText');
+      const loadingSpinner = document.getElementById('loadingSpinner');
+      const form = document.querySelector('.wd-event-add-update-content wd-form-control');
+      
+      buttonText.style.display = 'none';
+      loadingSpinner.style.display = 'inline-block';
+      submitButton.disabled = true;
+
       const eventData = {
         eventName: document.getElementById('eventName').value,
         eventDateTime: document.getElementById('eventDateTime').value,
@@ -61,17 +112,30 @@ body
         seat: document.getElementById('seat').value,
       };
 
-      const url = "#{mode}" === "Update Existing Event" ? `/api/event/${!{JSON.stringify(eventData || {})}.id}` : '/api/event';
-      const method = "#{mode}" === "Update Existing Event" ? 'put' : 'post';
+      const isUpdate = "#{mode}" === "Update Existing Event";
+      const url = isUpdate ? `/api/event/${!{JSON.stringify(eventData || {})}.id}` : '/api/event';
+      const method = isUpdate ? 'put' : 'post';
 
-      axios[method](url, eventData).then(response => {
-        alert('Success!');
-        location.href = '/eventList'
-      })
-      .catch(error => {
-        if(error.response)
-          alert(JSON.stringify(error.response.data.errors))
-        else
-          alert(error)
-      });
+      axios[method](url, eventData)
+        .then(response => {
+          const message = isUpdate ? 'Existing event updated successfully.' : 'New event added successfully.';
+          showNotification(message, 'Success');
+          if (isUpdate) {
+            setTimeout(() => {
+              window.location.href = '/eventList';
+            }, 2000);
+          }
+        })
+        .catch(error => {
+          if (error.response)
+            showNotification(JSON.stringify(error.response.data.errors), 'Error');
+          else
+            showNotification(error.toString(), 'Error');
+        })
+        .finally(() => {
+          buttonText.style.display = '';
+          loadingSpinner.style.display = 'none';
+          submitButton.disabled = false;
+        });
     }
+
