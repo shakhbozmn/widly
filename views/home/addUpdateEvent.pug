@@ -125,6 +125,9 @@ body
               window.location.href = '/eventList';
             }, 2000);
           }
+          else {
+            closeModalInSuccess();
+          }
         })
         .catch(error => {
           if (error.response)
