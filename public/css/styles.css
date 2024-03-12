@@ -84,12 +84,14 @@
   margin-right: 10px;
 }
 
-* {
-  border: 1px solid red;
-}
-
 body {
   background: #000;
+}
+
+@media (max-width: 767px) {
+  br {
+    display: none;
+  }
 }
 
 header .navbar-brand {
@@ -108,7 +110,17 @@ input:focus-visible {
   outline: none;
 }
 
-.hero-section {
+.wd-webtech-msg {
+  background-color: #000;
+  padding: 10px 0;
+  z-index: 1;
+}
+.wd-webtech-msg .wd-subtitle {
+  font-size: clamp(14px, 3vw, 17px);
+  text-align: center;
+}
+
+.wd-hero-section {
   position: relative;
   height: 100vh;
   display: flex;
@@ -117,7 +129,7 @@ input:focus-visible {
   color: #fff;
   text-align: center;
 }
-.hero-section .bg-image {
+.wd-hero-section .bg-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -131,7 +143,7 @@ input:focus-visible {
   z-index: -1;
   border-bottom: #ffffff solid 2px;
 }
-.hero-section .wd-btn {
+.wd-hero-section .wd-btn {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -140,12 +152,12 @@ input:focus-visible {
   margin-top: 90px;
 }
 @media screen and (max-width: 768px) {
-  .hero-section .wd-btn {
+  .wd-hero-section .wd-btn {
     flex-direction: column;
     margin-top: 30px;
   }
 }
-.hero-section .wd-btn .btn-primary {
+.wd-hero-section .wd-btn .btn-primary {
   background: #d5f710;
   color: #000;
   border: #d5f710 solid 2px;
@@ -160,12 +172,12 @@ input:focus-visible {
   transition: all 0.3s ease;
   cursor: pointer;
 }
-.hero-section .wd-btn .btn-primary:hover {
+.wd-hero-section .wd-btn .btn-primary:hover {
   cursor: pointer;
   background: #000;
   color: #d5f710;
 }
-.hero-section .wd-btn .btn-secondary {
+.wd-hero-section .wd-btn .btn-secondary {
   background: transparent;
   color: #d5f710;
   border: #d5f710 solid 2px;
@@ -180,7 +192,7 @@ input:focus-visible {
   transition: all 0.3s ease;
   cursor: pointer;
 }
-.hero-section .wd-btn .btn-secondary:hover {
+.wd-hero-section .wd-btn .btn-secondary:hover {
   cursor: pointer;
   background: #d5f710;
   color: #000;
@@ -193,6 +205,13 @@ input:focus-visible {
 @media (max-width: 768px) {
   .wd-features {
     margin: 0;
+    padding-top: 80px;
+  }
+}
+@media (max-width: 600px) {
+  .wd-features {
+    margin: 0;
+    padding: 40px 0;
   }
 }
 .wd-features .wd-feature {
@@ -259,6 +278,12 @@ input:focus-visible {
   margin: 100px 0 200px;
   padding: 100px 0;
   position: relative;
+}
+@media (max-width: 767px) {
+  .wd-results {
+    margin: 80px 0;
+    padding: 0;
+  }
 }
 .wd-results .bg-image {
   position: absolute;
@@ -644,21 +669,14 @@ input:focus-visible {
 }
 .wd-event-add-update-content .wd-form-control {
   width: 100%;
-  padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
   border: 2px solid #ced4da;
-  border-radius: 0.25rem;
-}
-.wd-event-add-update-content .wd-form-label {
-  color: #ffeb3b;
-  font-weight: bold;
-}
-.wd-event-add-update-content .wd-form-control {
-  border-radius: 0.25rem;
+  border-radius: 0.4rem;
+  padding: 10px 15px;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: 1px solid #357a38;
@@ -666,6 +684,10 @@ input:focus-visible {
 .wd-event-add-update-content .wd-form-control:focus {
   border-color: #4caf50;
   box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+}
+.wd-event-add-update-content .wd-form-label {
+  color: #ffeb3b;
+  font-weight: bold;
 }
 .wd-event-add-update-content .wd-input-group {
   position: relative;

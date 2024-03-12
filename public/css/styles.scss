@@ -1,8 +1,8 @@
 @import "typography";
 
-* {
-    border: 1px solid red;
-}
+// * {
+//     border: 1px solid red;
+// }
 
 $primary-color: #4caf50;
 $secondary-color: #ffeb3b;
@@ -11,6 +11,12 @@ $font-family: "Roboto", sans-serif;
 
 body {
     background: #000;
+}
+
+br {
+    @media (max-width: 767px) {
+        display: none;
+    }
 }
 
 header {
@@ -33,7 +39,17 @@ input {
     }
 }
 
-.hero-section {
+.wd-webtech-msg {
+    background-color: #000;
+    padding: 10px 0;
+    z-index: 1;
+    .wd-subtitle {
+        font-size: clamp(14px, 3vw, 17px);
+        text-align: center;
+    }
+}
+
+.wd-hero-section {
     position: relative;
     height: 100vh;
     display: flex;
@@ -122,6 +138,11 @@ input {
 
     @media (max-width: 768px) {
         margin: 0;
+        padding-top: 80px;
+    }
+    @media (max-width: 600px) {
+        margin: 0;
+        padding: 40px 0;
     }
     .wd-feature {
         display: flex;
@@ -191,6 +212,11 @@ input {
     margin: 100px 0 200px;
     padding: 100px 0;
     position: relative;
+
+    @media (max-width: 767px) {
+        margin: 80px 0;
+        padding: 0;
+    }
     .bg-image {
         position: absolute;
         top: 0;
@@ -611,23 +637,14 @@ input {
 
         .wd-form-control {
             width: 100%;
-            padding: 0.375rem 0.75rem;
             font-size: 1rem;
             line-height: 1.5;
             color: #495057;
             background-color: #fff;
             background-clip: padding-box;
             border: 2px solid #ced4da;
-            border-radius: 0.25rem;
-        }
-
-        .wd-form-label {
-            color: $secondary-color;
-            font-weight: bold;
-        }
-
-        .wd-form-control {
-            border-radius: 0.25rem;
+            border-radius: 0.4rem;
+            padding: 10px 15px;
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: 1px solid darken($primary-color, 15%);
@@ -637,6 +654,10 @@ input {
             }
         }
 
+        .wd-form-label {
+            color: $secondary-color;
+            font-weight: bold;
+        }
         .wd-input-group {
             position: relative;
 
