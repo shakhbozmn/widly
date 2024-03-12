@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap");
 .wd-title {
-  font-size: 65px;
+  font-size: clamp(45px, 3vw, 65px);
   margin-bottom: 16px;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
@@ -19,7 +19,7 @@
 }
 
 .wd-subtitle {
-  font-size: 20px;
+  font-size: clamp(16px, 3vw, 20px);
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -33,7 +33,7 @@
   margin-bottom: 16px;
 }
 .wd-features .wd-feature-title {
-  font-size: 30px;
+  font-size: clamp(20px, 3vw, 30px);
   margin-bottom: 16px;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
@@ -43,7 +43,7 @@
   color: #f3f3f3;
 }
 .wd-features .wd-feature-desc {
-  font-size: 16px;
+  font-size: clamp(14px, 3vw, 16px);
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -84,6 +84,10 @@
   margin-right: 10px;
 }
 
+* {
+  border: 1px solid red;
+}
+
 body {
   background: #000;
 }
@@ -98,6 +102,10 @@ header .navbar-brand {
 }
 header .navbar-brand span {
   color: #d5f710;
+}
+
+input:focus-visible {
+  outline: none;
 }
 
 .hero-section {
@@ -130,6 +138,12 @@ header .navbar-brand span {
   align-items: center;
   gap: 20px;
   margin-top: 90px;
+}
+@media screen and (max-width: 768px) {
+  .hero-section .wd-btn {
+    flex-direction: column;
+    margin-top: 30px;
+  }
 }
 .hero-section .wd-btn .btn-primary {
   background: #d5f710;
@@ -176,7 +190,16 @@ header .navbar-brand span {
   margin: -150px 0;
   padding-bottom: 200px;
 }
+@media (max-width: 768px) {
+  .wd-features {
+    margin: 0;
+  }
+}
 .wd-features .wd-feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   margin-bottom: 30px;
   border: rgba(243, 243, 243, 0.5254901961) solid 2px;
@@ -196,6 +219,11 @@ header .navbar-brand span {
 
 .wd-about-section {
   padding: 100px 0;
+}
+@media screen and (max-width: 768px) {
+  .wd-about-section .wd-about-img {
+    overflow: hidden;
+  }
 }
 .wd-about-section .wd-about-content {
   margin-bottom: 30px;
@@ -254,6 +282,7 @@ header .navbar-brand span {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  height: 100%;
 }
 .wd-results .wd-result-content {
   color: #f3f3f3;
@@ -545,8 +574,38 @@ header .navbar-brand span {
   gap: 10px;
 }
 
+.wd-event-add-update {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.wd-event-add-update:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/add_new-bg.jpeg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(50px);
+  z-index: -2;
+}
+.wd-event-add-update::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
 .wd-event-add-update-content {
-  margin-top: 5rem;
   font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
@@ -666,22 +725,42 @@ header .navbar-brand span {
   background-color: #6e6300;
 }
 
-.events-list .wd-header {
+.wd-events-list .wd-header-btn-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000;
+}
+@media screen and (max-width: 767px) {
+  .wd-events-list .wd-header-btn-group {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+.wd-events-list .wd-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 20px;
 }
-.events-list .wd-header .back-icon i {
+.wd-events-list .wd-header .back-icon i {
   font-size: 30px;
   color: #ffeb3b;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
 }
-.events-list .wd-header .back-icon i:hover {
+.wd-events-list .wd-header .back-icon i:hover {
   color: #6e6300;
 }
-.events-list .wd-btn-top {
+.wd-events-list .wd-btn-top {
   background-color: transparent;
   border: #d5f710 solid 2px;
   color: #d5f710;
@@ -693,27 +772,38 @@ header .navbar-brand span {
   font-weight: 800;
   font-style: normal;
   line-height: normal;
+  width: auto;
 }
-.events-list .wd-btn-top:hover {
+@media screen and (max-width: 767px) {
+  .wd-events-list .wd-btn-top {
+    align-self: flex-end;
+  }
+}
+.wd-events-list .wd-btn-top:hover {
   background-color: #d5f710;
   color: black;
 }
-.events-list #eventsRow .card {
+@media screen and (max-width: 767px) {
+  .wd-events-list #eventsRow {
+    padding-top: 100px;
+  }
+}
+.wd-events-list #eventsRow .card {
   background-color: #000;
   border: #d5f710 solid 2px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 }
-.events-list #eventsRow .card .card-header {
+.wd-events-list #eventsRow .card .card-header {
   border-bottom: #d5f710 solid 2px;
   color: #f3f3f3;
   font-size: 15px;
 }
-.events-list #eventsRow .card .card-body {
+.wd-events-list #eventsRow .card .card-body {
   color: #f3f3f3;
 }
-.events-list #eventsRow .card .card-body .card-title {
+.wd-events-list #eventsRow .card .card-body .card-title {
   font-size: 30px;
   margin-bottom: 20px;
   font-family: "Montserrat", sans-serif;
@@ -724,7 +814,7 @@ header .navbar-brand span {
   color: #d5f710;
   text-align: center;
 }
-.events-list #eventsRow .card .card-body .card-text {
+.wd-events-list #eventsRow .card .card-body .card-text {
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
@@ -732,10 +822,10 @@ header .navbar-brand span {
   font-style: normal;
   color: rgba(243, 243, 243, 0.6784313725);
 }
-.events-list #eventsRow .card .card-body .card-text span {
+.wd-events-list #eventsRow .card .card-body .card-text span {
   color: #f3f3f3;
 }
-.events-list #eventsRow .card .card-footer {
+.wd-events-list #eventsRow .card .card-footer {
   align-self: flex-end;
   border-top: #d5f710 solid 2px;
   width: 100%;

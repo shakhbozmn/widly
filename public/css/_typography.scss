@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap");
 
 .wd-title {
-    font-size: 65px;
+    font-size: clamp(45px, 3vw, 65px);
     margin-bottom: 16px;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -19,7 +19,7 @@
     }
 }
 .wd-subtitle {
-    font-size: 20px;
+    font-size: clamp(16px, 3vw, 20px);
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -35,7 +35,7 @@
             margin-bottom: 16px;
         }
         &-title {
-            font-size: 30px;
+            font-size: clamp(20px, 3vw, 30px);
             margin-bottom: 16px;
             font-family: "Montserrat", sans-serif;
             font-optical-sizing: auto;
@@ -45,7 +45,7 @@
             color: #f3f3f3;
         }
         &-desc {
-            font-size: 16px;
+            font-size: clamp(14px, 3vw, 16px);
             font-family: "Montserrat", sans-serif;
             font-optical-sizing: auto;
             font-weight: 400;
